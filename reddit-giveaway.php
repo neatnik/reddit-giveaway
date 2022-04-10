@@ -30,8 +30,8 @@ SOFTWARE.
 */
 
 define('POST_URL', 'https://www.reddit.com/r/SeveranceAppleTVPlus/comments/tzayjj/postfinale_community_giveaway/');
-define('SELECTION_COUNT', 3);
-define('INELIGIBLE_USERNAMES', array('neatnikllc'));
+define('SELECTION_COUNT', 5);
+define('INELIGIBLE_USERNAMES', array('[deleted]', 'neatnikllc'));
 define('RESULTS_FILE', 'results.txt');
 
 $GLOBALS['entries'] = array();
@@ -111,6 +111,9 @@ $output .= '-------------'."\n\n";
 foreach($valid_entries as $username => $arr) {
 	$output .= $username.' - https://reddit.com'.$arr['permalink']."\n";
 }
+
+$output .= "\n__\n\n";
+$output .= "Produced with reddit-giveaway.php (https://github.com/neatnik/reddit-giveaway)";
 
 echo '<pre>';
 echo $output;
