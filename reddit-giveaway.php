@@ -84,7 +84,7 @@ foreach($GLOBALS['entries'] as $json) {
 	$valid_entries[$entry->author]['permalink'] = $entry->permalink;
 }
 
-$output .= 'Total valid entries: '.count($valid_entries)."\n\n";
+$output .= 'Total valid entries: '.count($valid_entries)."\n\n\n";
 
 $winners = array_rand($valid_entries, SELECTION_COUNT);
 
@@ -99,17 +99,18 @@ else {
 
 $i = 1;
 foreach($winners as $winner) {
-	$output .= $i.'. u/'.$winner."\n";
-	$output .= $valid_entries[$winner]['body']."\n";
-	$output .= 'https://reddit.com'.$valid_entries[$winner]['permalink']."\n\n";
+	$output .= str_pad($i, strlen((string)SELECTION_COUNT), ' ', STR_PAD_LEFT).'. u/'.$winner."\n";
+	$output .= str_pad(' ', strlen((string)SELECTION_COUNT)+2).str_replace("\n", ' ', $valid_entries[$winner]['body'])."\n";
+	$output .= str_pad(' ', strlen((string)SELECTION_COUNT)+2).'https://reddit.com'.$valid_entries[$winner]['permalink']."\n\n";
 	$i++;
 }
 
+$output .= "\n";
 $output .= 'Valid entries'."\n";
 $output .= '-------------'."\n\n";
 
 foreach($valid_entries as $username => $arr) {
-	$output .= $username.' - https://reddit.com'.$arr['permalink']."\n";
+	$output .= 'u/'.str_pad($username, 21).' https://reddit.com'.$arr['permalink']."\n";
 }
 
 $output .= "\n__\n\n";
